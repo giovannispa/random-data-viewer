@@ -48,7 +48,7 @@ exit
 
 Instale a node_modules:
 ```sh
-docker-compose run --rm npm run dev
+docker-compose run --rm npm install
 ```
 
 Inicie o vite:
