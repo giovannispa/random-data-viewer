@@ -60,3 +60,7 @@ Acesse a plataforma:
 ```sh
 localhost
 ```
+
+### Permissões
+Caso os comandos de docker ou npm comecem a dar erros de permissão, basta utilizar o comando chmod -R 777 . na raiz e 
+os comandos irão funcionar normalemnte
