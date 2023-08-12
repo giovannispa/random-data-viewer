@@ -1,24 +1,11 @@
-# 💻 Setup completo de desenvolvilmento em docker para Laravel.
-Este repositório foi criado para ser usado em um setup de ambiente completo de desenvolvimento em Laravel com docker. Funciona para máquina local e produção.
+# 💻 Desafio de consumo de API Random Data.
+Repositório criado como desafio prático para vaga de trabalho.
 
 ### Passo a passo:
 
 Clone o repositório:
 ```sh
-git clone https://github.com/giovannispa/setup-padrao-laravel-docker.git
-```
-
-Clone o repositório original do Laravel:
-```sh
-git clone https://github.com/laravel/laravel.git meu-projeto
-```
-
-Copie todos os arquivos do repositório para o repositório do Laravel:
-```sh
-cp -rf setup-padrao-laravel-docker/* meu-projeto/
-```
-```sh
-cd meu-projeto/
+git clone https://github.com/giovannispa/random-data-viewer.git
 ```
 
 Crie o Arquivo .env:
@@ -26,42 +13,12 @@ Crie o Arquivo .env:
 cp .env.example .env
 ```
 
-Atualize as variáveis de ambiente do arquivo .env:
+Adicione as seguintes variáveis de ambiente do arquivo .env:
 ```dosini
-DB_CONNECTION=mysql
-DB_HOST=mysql #nome do container do seu banco de dados criado no docker-compose.yml.(O meu por padrão deixei mysql)
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=root
-
-ARGS_USER=teste #nome do super usuário criado dentro do container customizado app no docker-compose.yml
-ARGS_UID=1000 #Uid padrão dos argumentos enviados para o container customizado app
-
-CACHE_DRIVER=redis
-QUEUE_CONNECTION=redis
-SESSION_DRIVER=redis
-
-REDIS_HOST=redis #nome do container do seu sistema de cache no docker-compose.yml.(O meu por padrão deixei redis)
-REDIS_PASSWORD=null
-REDIS_PORT=6379
+ARGS_USER=teste
+ARGS_UID=1000
 ```
-# Opcionais
 
-### Adicionando phpmyadmin para ambiente dev:
-
-No arquivo docker-compose.yml:
-```dosini
-phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - '8080:80'
-    environment:
-      PMA_HOST: mysql #nome do container do seu banco de dados
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-    networks:
-      - laravel
-```
 # Subindo o projeto
 
 Suba os containers do projeto:
@@ -82,4 +39,24 @@ composer install
 Gerar a key do projeto Laravel:
 ```sh
 php artisan key:generate
+```
+
+Saia do container:
+```sh
+exit
+```
+
+Instale a node_modules:
+```sh
+docker-compose run --rm npm run dev
+```
+
+Inicie o vite:
+```sh
+docker-compose run --rm --service-ports npm run dev
+```
+
+Acesse a plataforma:
+```sh
+localhost
 ```
